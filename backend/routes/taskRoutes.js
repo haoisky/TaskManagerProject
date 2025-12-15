@@ -2,56 +2,47 @@ const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
 
-// 1. GET ALL TASKS (Read)
-// URL: http://localhost:5000/api/tasks
+// GET ALL
 router.get('/', async (req, res) => {
     try {
-        const tasks = await Task.find().sort({ createdAt: -1 }); // Get all, newest first
+        const tasks = await Task.find().sort({ createdAt: -1 });
         res.json(tasks);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// 2. CREATE NEW TASK (Create)
-// URL: http://localhost:5000/api/tasks
+// CREATE (UPDATED)
 router.post('/', async (req, res) => {
     try {
         const newTask = new Task({
             title: req.body.title,
-            description: req.body.description
+            description: req.body.description, // <-- ADDED
+            priority: req.body.priority,
+            category: req.body.category,       // <-- ADDED
+            dueDate: req.body.dueDate
         });
         const savedTask = await newTask.save();
         res.json(savedTask);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// 3. UPDATE TASK (Update - Mark as Done or Edit)
-// URL: http://localhost:5000/api/tasks/:id
+// UPDATE (UPDATED)
 router.put('/:id', async (req, res) => {
     try {
         const updatedTask = await Task.findByIdAndUpdate(
             req.params.id, 
-            req.body, 
-            { new: true } // Return the updated version
+            req.body, // req.body now contains description & category
+            { new: true }
         );
         res.json(updatedTask);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// 4. DELETE TASK (Delete)
-// URL: http://localhost:5000/api/tasks/:id
+// DELETE
 router.delete('/:id', async (req, res) => {
     try {
         await Task.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Task deleted successfully' });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+        res.json({ message: 'Task deleted' });
+    } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 module.exports = router;
