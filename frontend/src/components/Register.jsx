@@ -33,7 +33,7 @@ const Register = () => {
 
         try {
             // Only send necessary data to backend (exclude confirmPassword)
-            await axios.post('http://localhost:5000/api/auth/register', {
+            await axios.post('https://taskmanager-dx2w.onrender.com/api/auth/register', {
                 username: formData.username,
                 email: formData.email,
                 password: formData.password

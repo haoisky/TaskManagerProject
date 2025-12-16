@@ -9,7 +9,7 @@ import {
 import { toast } from 'react-toastify';
 import Calendar from 'react-calendar';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = 'https://taskmanager-dx2w.onrender.com/api/tasks';
 const AVATAR_OPTIONS = ['👨‍💻', '👩‍💻', '🐶', '🐱', '🦊', '🐸', '🤖', '👽', '💀', '👻', '🎃', '🌟'];
 
 const TaskManager = ({ logout }) => {
