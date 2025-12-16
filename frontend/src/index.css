@@ -19,26 +19,46 @@ body {
   background-color: var(--bg-app); color: var(--text-main);
   transition: background 0.3s, color 0.3s;
   overflow-x: hidden;
-  /* 🔹 BIGGER BASE FONT */
   font-size: 17px; 
 }
 
-/* --- AUTH PAGES (RESPONSIVE FIX) --- */
+/* --- AUTH PAGES--- */
 .auth-container { 
-  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; 
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 15px; 
 }
 .auth-card { 
-  background: var(--bg-card); padding: 40px; border-radius: 20px; 
+  background: var(--bg-card); padding: 30px 35px; border-radius: 20px; 
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1); 
   border: 1px solid var(--border-color);
   width: 100%; 
-  max-width: 450px; /* Wider on Desktop */
+  max-width: 420px;
   text-align: center; 
+  max-height: 95vh;
+  overflow-y: auto;
 }
-/* Mobile Adjustment for Auth */
+
+/* Make form spacing more compact specifically inside Auth Card */
+.auth-card .form-group {
+    margin-bottom: 15px; /* Less space between inputs */
+}
+.auth-card input {
+    padding: 12px; /* Slightly thinner inputs for auth */
+}
+.auth-card .brand-title {
+    font-size: 1.8rem; /* Slightly smaller title */
+    margin-bottom: 5px;
+}
+.auth-card .subtitle {
+    margin-bottom: 20px; /* Less space below subtitle */
+}
+.auth-card .btn-primary {
+    margin-top: 10px;
+}
+
+/* Mobile Adjustment */
 @media (max-width: 500px) {
-  .auth-card { padding: 25px; max-width: 100%; }
-  .brand-title { font-size: 1.5rem !important; }
+  .auth-card { padding: 25px 20px; }
+  .auth-card .brand-title { font-size: 1.5rem !important; }
 }
 
 /* --- MAIN LAYOUT --- */
