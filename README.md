@@ -1,6 +1,8 @@
 **Project Title: Task Manager App (Full-Stack)** 
 
-**Tech Stack:** MongoDB, Express.js, React (Vite), Node.js, JWT Auth. Deployment: Vercel (Frontend) & Render (Backend). 
+**Tech Stack:** MongoDB, Express.js, React (Vite), Node.js, JWT Auth. 
+
+**Deployment:** Vercel (Frontend) & Render (Backend). 
 
 
 **Key Features:**
