@@ -1,33 +1,38 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const taskRoutes = require('./routes/taskRoutes');
 const authRoutes = require('./routes/authRoutes');
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-
+// 1. INITIALIZE APP (Dapat una ito!)
 const app = express();
-// USE PROCESS.ENV.PORT (Required by Render)
+
+// 2. CONFIGURATION
+// Use Render's PORT or default to 5000
 const PORT = process.env.PORT || 5000; 
 
-// Middleware
-app.use(cors()); // Allows all connections (Good for now)
-app.use(express.json());
+// 3. MIDDLEWARE (Dapat sunod sa Init)
+app.use(cors()); 
+app.use(express.json()); 
 
-// DATABASE CONNECTION
-// Kung nasa Render (production), gagamitin niya yung process.env.MONGO_URI
-// Kung nasa PC mo (local), gagamitin niya yung localhost string
-const MONGODB_URI = process.env.MONGO_URI || 'mongodb+srv://<db_username>:<db_password>@taskmanager.u0amdu5.mongodb.net/?appName=taskmanager'
+// 4. DATABASE CONNECTION
+// Use Render's Environment Variable for DB, or Localhost if on PC
+const MONGODB_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/taskmanager_db';
 
-// --- IMPORT ROUTES ---
-const taskRoutes = require('./routes/taskRoutes');
+mongoose.connect(MONGODB_URI)
+    .then(() => console.log('✅ MongoDB Connected!'))
+    .catch(err => console.log('❌ DB Connection Error:', err));
 
-// Use Routes
-// Lahat ng request sa /api/tasks ay pupunta sa taskRoutes
+// 5. ROUTES
 app.use('/api/tasks', taskRoutes);
 app.use('/api/auth', authRoutes);
 
+// 6. TEST ROUTE (Optional, para makita kung online)
+app.get('/', (req, res) => {
+    res.send('API is running...');
+});
+
+// 7. START SERVER
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
 });
