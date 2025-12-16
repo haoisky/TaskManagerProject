@@ -24,7 +24,7 @@ body {
 
 /* --- AUTH PAGES--- */
 .auth-container { 
-  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 15px; 
+  min-height: 95vh; display: flex; align-items: center; justify-content: center; padding: 15px; 
 }
 .auth-card { 
   background: var(--bg-card); padding: 30px 35px; border-radius: 20px; 
@@ -33,7 +33,7 @@ body {
   width: 100%; 
   max-width: 420px;
   text-align: center; 
-  max-height: 95vh;
+  max-height: 85vh;
   overflow-y: auto;
 }
 
