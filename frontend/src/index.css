@@ -33,8 +33,6 @@ body {
   width: 100%; 
   max-width: 420px;
   text-align: center; 
-  max-height: 85vh;
-  overflow-y: auto;
 }
 
 /* Make form spacing more compact specifically inside Auth Card */
